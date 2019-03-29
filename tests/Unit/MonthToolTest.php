@@ -9,6 +9,21 @@ use PHPUnit\Framework\TestCase;
 
 class MonthToolTest extends TestCase
 {
+    public function testIsEndOfYearForAnyGivenMonthValue(){
+        $this->assertTrue(\Yue\YearAround\Context::IsEndOfYear(12),'12 is end of any year');
+        $this->assertTrue(\Yue\YearAround\Context::IsEndOfYear('12'));
+        $this->assertTrue(\Yue\YearAround\Context::IsEndOfYear('Dec'));
+        foreach ([12] as $item) {
+            $date = \Carbon\Carbon::create(2018, $item,10);
+            $this->assertTrue(\Yue\YearAround\Context::IsEndOfYear($date));
+            $this->assertFalse(\Yue\YearAround\Context::IsEndOfYear($date->addMonth()));
+        }
+
+        // Test not end of season month
+        $this->assertFalse(\Yue\YearAround\Context::IsEndOfYear(1));
+        $this->assertFalse(\Yue\YearAround\Context::IsEndOfYear('01'), '01 is not end of any year');
+        $this->assertFalse(\Yue\YearAround\Context::IsEndOfYear('Jan'), 'Jan is not end of any year');
+    }
     /**
      * Test is end of season function
      */

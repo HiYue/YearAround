@@ -13,6 +13,31 @@ use Yue\YearAround\Utilities\DateParser;
 class Context
 {
     /**
+     * If the given date is the end of year
+     * 是否传入的日期是年底
+     * @param $date
+     * @return boolean
+     */
+    public static function IsEndOfYear($date){
+        $yes = false;
+        $month = DateParser::GetMonth($date);
+        if(is_string($month)){
+            if(strlen($month)<3){
+                $yes = $month === '12';
+            }elseif(strlen($month) === 3){
+                $yes = strtolower($month) === 'dec';
+            }else{
+                $yes = strtolower($month) === 'december';
+            }
+        }elseif (is_int($month)){
+            $yes = $month === 12;
+        }
+        return $yes;
+    }
+
+    /**
+     * If the given date is the end of year
+     * 是否传入的日期是某个季度末
      * @param $date
      * @return boolean
      */
