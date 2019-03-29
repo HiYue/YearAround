@@ -2,7 +2,7 @@
     "name": "yue/yeararound",
     "description": "Parse any month in any language then get season name",
     "require": {
-        "nesbot/carbon": "^2.16",
+        "nesbot/carbon": "^1.36.2",
         "vlucas/phpdotenv": "^3.3"
     },
     "require-dev": {
