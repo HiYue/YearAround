@@ -1,0 +1,27 @@
+{
+    "name": "yue/yeararound",
+    "description": "Parse any month in any language then get season name",
+    "require": {
+        "nesbot/carbon": "^2.16",
+        "vlucas/phpdotenv": "^3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yue\\YearAround\\": "src"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yue Wang",
+            "email": "hi@yue.dev"
+        }
+    ],
+    "minimum-stability": "stable",
+    "scripts":{
+        "test": "./vendor/bin/phpunit"
+    }
+}
