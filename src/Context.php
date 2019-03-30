@@ -12,6 +12,20 @@ use Yue\YearAround\Utilities\DateParser;
 class Context
 {
     /**
+     * Create a new year instance
+     * @param $year
+     * @param int $startMonth
+     * @return YearAround
+     */
+    public static function CreateYear($year, $startMonth = 1){
+        $year = new YearAround($year);
+        if($startMonth > 1){
+            $year->setStartMonth($startMonth);
+        }
+        return $year;
+    }
+
+    /**
      * If the given date is the end of year
      * 是否传入的日期是年底
      * @param $date
