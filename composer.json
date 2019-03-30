@@ -8,6 +8,7 @@
         "phpunit/phpunit": "^7.0"
     },
     "autoload": {
+        "files": ["src/functions.php"],
         "psr-4": {
             "Yue\\YearAround\\": "src"
         }
