@@ -1,8 +1,8 @@
 # Year-Around
-- Parse any month in any language then get season name. 
-- 解析任意给定的日期来判定是否为一年中的某个季节
-- Easily find the month in which season
-- 方便的处理某个月或者日期属于哪个季节
+- Parse any month in any language is the start or end of a season. 
+- 解析任意给定的日期来判定是否为一年中的某个季节的开始和结束
+- When a year is not start from January, such as a Financial Year in Australia
+- 方便的处理那些不是从一月开始的年的情况 比如财政年度可能是从7月份开始
 
 ## Installation
 ### With Composer
@@ -21,7 +21,7 @@ $monthString2 = '03';
 $monthString3 = 'Mar';
 $monthString4 = 'March';
 
-$isEndOfAnySeason1 = Context::IsEndOfSeason($monthInt);  // True
+$isEndOfAnySeason1 = Context::IsEndOfSeason($monthInt);      // True
 $isEndOfAnySeason2 = Context::IsEndOfSeason($monthString1);  // True
 $isEndOfAnySeason3 = Context::IsEndOfSeason($monthString2);  // True
 $isEndOfAnySeason4 = Context::IsEndOfSeason($monthString3);  // True
@@ -48,6 +48,9 @@ foreach ($AustralianFinancialYear->getMonths() as $month) {
      */
     var_dump($month); // from Jul/2018; Aug/2018; ... Jan/2019; Feb/2019
 }
+
+$AustralianFinancialYear->getFirstMonth();  // Jul/2018 获取年度首月 2018年7月
+$AustralianFinancialYear->getLastMonth();   // Jun/2019 获取年度末月 2019年6月
 ```
 
 # Test

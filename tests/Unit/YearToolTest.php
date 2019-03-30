@@ -21,6 +21,9 @@ class YearToolTest extends \PHPUnit\Framework\TestCase
             $this->assertEquals(2018, $month->getYear());
         }
 
+        $year->getFirstMonth();
+        $year->getLastMonth();
+
         /**
          * 跨年的测试 起始月份为4月份
          */
