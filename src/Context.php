@@ -11,10 +11,6 @@ use Yue\YearAround\Utilities\DateParser;
 
 class Context
 {
-    public static function GetConfig(){
-        return env('key');
-    }
-
     /**
      * If the given date is the end of year
      * 是否传入的日期是年底

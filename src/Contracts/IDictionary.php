@@ -6,7 +6,6 @@
 
 namespace Yue\YearAround\Contracts;
 
-
 abstract class IDictionary
 {
     protected $monthsList = [
@@ -29,7 +28,21 @@ abstract class IDictionary
         $this->init();
     }
 
+    /**
+     * Init the dictionary
+     * 初始化对应的字典
+     * @return void
+     */
     public abstract function init();
+
+    /**
+     * Output 格式化输出
+     * @param $year
+     * @param IMonth $month
+     * @param string $separator
+     * @return string
+     */
+    public abstract function format($year, $month,$separator = null);
 
     public function getAbbr($idx){
         return isset($this->monthsList[$idx][2]) ? $this->monthsList[$idx][2] : '';

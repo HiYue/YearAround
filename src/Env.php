@@ -11,14 +11,16 @@ use Yue\YearAround\Contracts\IHemisphere;
 
 class Env
 {
-    const HEMISPHERE = 1;   // 默认为北半球
-    const START_MONTH = 2;  // 计算本年时的起始月份
+    const HEMISPHERE        = 1;  // 默认为北半球
+    const START_MONTH       = 2;  // 计算本年时的起始月份
+    const FORMAT_SEPARATOR  = 3;  // 计算本年时的起始月份
 
     /**
      * Default values
      */
-    const DEFAULT_HEMISPHERE = IHemisphere::NORTH;   // 默认为北半球
-    const DEFAULT_START_MONTH = 1;  // 默认为1月份是任何年的起始月份
+    const DEFAULT_HEMISPHERE        = IHemisphere::NORTH;   // 默认为北半球
+    const DEFAULT_START_MONTH       = 1;                    // 默认为1月份是任何年的起始月份
+    const DEFAULT_FORMAT_SEPARATOR  = '/';                  // 默认为1月份是任何年的起始月份
 
     /**
      * Get env value by given key
@@ -35,6 +37,9 @@ class Env
                 break;
             case self::START_MONTH:
                 $result = $hasEnvFunctionDefined ? env('YEAR_AROUND_START_MONTH', self::DEFAULT_START_MONTH) : self::DEFAULT_START_MONTH;
+                break;
+            case self::FORMAT_SEPARATOR:
+                $result = $hasEnvFunctionDefined ? env('YEAR_AROUND_FORMAT_SEPARATOR', self::DEFAULT_FORMAT_SEPARATOR) : self::DEFAULT_FORMAT_SEPARATOR;
                 break;
             default:
                 break;

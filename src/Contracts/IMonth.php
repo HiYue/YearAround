@@ -31,6 +31,12 @@ interface IMonth
     public function setYear($year);
 
     /**
+     * Get year of the month
+     * @return int
+     */
+    public function getYear();
+
+    /**
      * Get season
      * @return ISeason
      */
@@ -54,4 +60,10 @@ interface IMonth
      * @return Carbon
      */
     public function getLastDay();
+
+    /**
+     * Get the full description of the month
+     * @return string
+     */
+    public function __toString();
 }

@@ -8,6 +8,8 @@ namespace Yue\YearAround\Impl\I18N;
 
 
 use Yue\YearAround\Contracts\IDictionary;
+use Yue\YearAround\Contracts\IMonth;
+use Yue\YearAround\Env;
 
 class ChineseDictionary extends IDictionary
 {
@@ -26,11 +28,25 @@ class ChineseDictionary extends IDictionary
         '十二月',
     ];
 
+    /**
+     * {@inheritdoc}
+     */
     public function init()
     {
         foreach (range(1,12) as $idx) {
             $this->monthsList[$idx-1][] = $this->names[$idx-1];
             $this->monthsList[$idx-1][] = $this->names[$idx-1];
         }
+    }
+
+    /**
+     * @param $year
+     * @param IMonth $month
+     * @param string $separator
+     * @return string
+     */
+    public function format($year, $month, $separator = null)
+    {
+        return $year.'年'.$month->getName();
     }
 }

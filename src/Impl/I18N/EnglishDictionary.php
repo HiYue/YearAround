@@ -8,6 +8,8 @@ namespace Yue\YearAround\Impl\I18N;
 
 
 use Yue\YearAround\Contracts\IDictionary;
+use Yue\YearAround\Contracts\IMonth;
+use Yue\YearAround\Env;
 
 class EnglishDictionary extends IDictionary
 {
@@ -40,11 +42,28 @@ class EnglishDictionary extends IDictionary
         'December',
     ];
 
+    /**
+     * {@inheritdoc}
+     */
     public function init()
     {
         foreach (range(1,12) as $idx) {
             $this->monthsList[$idx-1][] = $this->_abbrs[$idx-1];
             $this->monthsList[$idx-1][] = $this->_names[$idx-1];
         }
+    }
+
+    /**
+     * @param $year
+     * @param IMonth $month
+     * @param string $separator
+     * @return string
+     */
+    public function format($year, $month, $separator = null)
+    {
+        if(is_null($separator)){
+            $separator = Env::get(Env::FORMAT_SEPARATOR);
+        }
+        return $month->getName().$separator.$year;
     }
 }

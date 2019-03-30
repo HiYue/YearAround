@@ -66,8 +66,8 @@ class Month implements IMonth
      */
     private function init($intIndex){
         $this->monthIntValue = $intIndex;
-        $this->abbr = $this->_dictionary->getAbbr($intIndex);
-        $this->name = $this->_dictionary->getFullName($intIndex);
+        $this->abbr = $this->_dictionary->getAbbr($intIndex-1);
+        $this->name = $this->_dictionary->getFullName($intIndex-1);
         return $this;
     }
 
@@ -99,6 +99,14 @@ class Month implements IMonth
     {
         $this->year = $year;
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getYear()
+    {
+        return $this->year;
     }
 
     /**
@@ -136,5 +144,13 @@ class Month implements IMonth
     public function getLastDay()
     {
         return $this->lastDay;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        return $this->_dictionary->format($this->year,$this);
     }
 }
