@@ -9,8 +9,8 @@ namespace Yue\YearAround\Contracts;
 
 interface IHemisphere
 {
-    const NORTH = 1;
-    const SOUTH = 2;
+    const NORTH = 1;        // 北半球
+    const SOUTH = 2;        // 南半球
 
     public static function GetEndOfSeason($name,$northOrSouth);
 }
