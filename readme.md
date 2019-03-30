@@ -64,3 +64,14 @@ $AustralianFinancialYear->getLastMonth();   // Jun/2019 获取年度末月 2019�
 # Test
 - composer test
 - 运行 composer test 命令即可
+
+Contributing
+------------
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Make your changes
+4. Run the tests, adding new ones for your own code if necessary (`phpunit`)
+5. Commit your changes (`git commit -am 'Added some feature'`)
+6. Push to the branch (`git push origin my-new-feature`)
+7. Create new Pull Request
