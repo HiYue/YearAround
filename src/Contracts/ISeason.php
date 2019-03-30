@@ -11,4 +11,15 @@ namespace Yue\YearAround\Contracts;
 
 interface ISeason
 {
+    /**
+     * Get months of the season
+     * @return array
+     */
+    public function getMonths();
+
+    /**
+     * Get Season name
+     * @return string
+     */
+    public function getName();
 }

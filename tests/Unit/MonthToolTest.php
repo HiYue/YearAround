@@ -9,6 +9,25 @@ use PHPUnit\Framework\TestCase;
 
 class MonthToolTest extends TestCase
 {
+    public function testIsStartOfYearForAnyGivenMonthValue(){
+        $this->assertTrue(\Yue\YearAround\Context::IsStartOfYear(1),'1 is start of any year');
+        $this->assertTrue(\Yue\YearAround\Context::IsStartOfYear('1'));
+        $this->assertTrue(\Yue\YearAround\Context::IsStartOfYear('01'));
+        $this->assertTrue(\Yue\YearAround\Context::IsStartOfYear('Jan'));
+        $this->assertTrue(\Yue\YearAround\Context::IsStartOfYear('January'));
+        foreach ([1] as $item) {
+            $date = \Carbon\Carbon::create(2018, $item,10);
+            $this->assertTrue(\Yue\YearAround\Context::IsStartOfYear($date));
+            $this->assertFalse(\Yue\YearAround\Context::IsStartOfYear($date->addMonth()));
+        }
+
+        // Test not end of season month
+        $this->assertFalse(\Yue\YearAround\Context::IsStartOfYear(4));
+        $this->assertFalse(\Yue\YearAround\Context::IsStartOfYear('06'), '01 is not end of any year');
+        $this->assertFalse(\Yue\YearAround\Context::IsStartOfYear('Feb'), 'Jan is not end of any year');
+    }
+
+
     public function testIsEndOfYearForAnyGivenMonthValue(){
         $this->assertTrue(\Yue\YearAround\Context::IsEndOfYear(12),'12 is end of any year');
         $this->assertTrue(\Yue\YearAround\Context::IsEndOfYear('12'));
