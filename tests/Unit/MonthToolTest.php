@@ -10,6 +10,29 @@ use PHPUnit\Framework\TestCase;
 class MonthToolTest extends TestCase
 {
     /**
+     * 测试德语表达月份
+     */
+    public function testMonthI18n(){
+        $dic = \Yue\YearAround\Utilities\DictionaryFactory::GetInstance(\Yue\YearAround\Contracts\IDictionary::GERMANY);
+        $m = \Yue\YearAround\Utilities\DateParser::GetMonth(7,$dic);
+
+        $this->assertEquals('Juli',$m->getName());
+        $this->assertEquals('Herbst',$m->getSeason()->getName());
+
+        $dic = \Yue\YearAround\Utilities\DictionaryFactory::GetInstance(\Yue\YearAround\Contracts\IDictionary::FRENCH);
+        $m = \Yue\YearAround\Utilities\DateParser::GetMonth(7,$dic);
+
+        $this->assertEquals('Juillet',$m->getName());
+        $this->assertEquals('L\'automne',$m->getSeason()->getName());
+
+        $dic = \Yue\YearAround\Utilities\DictionaryFactory::GetInstance(\Yue\YearAround\Contracts\IDictionary::SPANISH);
+        $m = \Yue\YearAround\Utilities\DateParser::GetMonth(7,$dic);
+
+        $this->assertEquals('Julio',$m->getName());
+        $this->assertEquals('Otoño',$m->getSeason()->getName());
+    }
+
+    /**
      * 测试可以正确的获取某个月的最后一天
      */
     public function testMonthCanGetRightListDay(){

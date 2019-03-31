@@ -13,6 +13,7 @@ abstract class IDictionary
     const JAPANESE  = 'jp'; // 日语
     const GERMANY   = 'de'; // 德语
     const FRENCH    = 'fr'; // 法语
+    const SPANISH   = 'es'; // 法语
 
     /**
      * 所有的月份
