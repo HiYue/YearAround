@@ -11,7 +11,7 @@ use Yue\YearAround\Contracts\IMonth;
 
 class ChineseDictionary extends IDictionary
 {
-    private $names = [
+    protected $names = [
         '一月',
         '二月',
         '三月',
@@ -26,12 +26,13 @@ class ChineseDictionary extends IDictionary
         '十二月',
     ];
 
-    public $seasonsName = [
+    protected $seasonsName = [
         '春季',
         '夏季',
         '秋季',
         '冬季',
     ];
+
     /**
      * {@inheritdoc}
      */

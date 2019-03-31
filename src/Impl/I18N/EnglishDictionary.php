@@ -13,7 +13,7 @@ use Yue\YearAround\Env;
 
 class EnglishDictionary extends IDictionary
 {
-    private $_abbrs = [
+    protected $_abbrs = [
         'Jan',
         'Feb',
         'Mar',
@@ -27,7 +27,7 @@ class EnglishDictionary extends IDictionary
         'Nov',
         'Dec',
     ];
-    private $_names = [
+    protected $_names = [
         'January',
         'February',
         'March',
@@ -42,7 +42,7 @@ class EnglishDictionary extends IDictionary
         'December',
     ];
 
-    public $seasonsName = [
+    protected $seasonsName = [
         'Spring',
         'Summer',
         'Autumn',
