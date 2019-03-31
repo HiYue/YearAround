@@ -26,7 +26,7 @@ class ChineseDictionary extends IDictionary
         '十二月',
     ];
 
-    protected $seasonsName = [
+    public $seasonsName = [
         '春季',
         '夏季',
         '秋季',

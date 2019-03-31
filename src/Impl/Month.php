@@ -13,17 +13,19 @@ use Yue\YearAround\Contracts\IHoliday;
 use Yue\YearAround\Contracts\IMonth;
 use Yue\YearAround\Contracts\ISeason;
 use Yue\YearAround\Env;
+use Yue\YearAround\Utilities\ConstellationFactory;
 use Yue\YearAround\Utilities\DictionaryFactory;
 use Yue\YearAround\Utilities\SeasonFactory;
 use Yue\YearAround\Utilities\YearAroundMonthException;
 
 class Month implements IMonth
 {
-    private $name = '';
-    private $abbr = '';
-    private $monthIntValue = -1;
-    private $year = null;
-    private $holidays = [];
+    protected $name = '';
+    protected $abbr = '';
+    protected $monthIntValue = -1;
+    protected $year = null;
+    protected $holidays = [];
+    protected $constellations = [];
 
     /**
      * @var Carbon $lastDay
@@ -189,5 +191,18 @@ class Month implements IMonth
     public function __toString()
     {
         return $this->_dictionary->formatMonth($this->year,$this);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getConstellations()
+    {
+        if(empty($this->constellations)){
+            $first = ConstellationFactory::GetInstance($this->getIntValue(),1,$this->_dictionary);
+            $this->constellations[] = $first;
+            $this->constellations[] = $first->next();
+        }
+        return $this->constellations;
     }
 }

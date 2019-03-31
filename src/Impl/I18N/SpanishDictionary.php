@@ -39,7 +39,7 @@ class SpanishDictionary extends EnglishDictionary
         'Diciembre',
     ];
 
-    protected $seasonsName = [
+    public $seasonsName = [
         'Primavera',
         'Verano',
         'Otoño',

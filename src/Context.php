@@ -7,10 +7,25 @@
 namespace Yue\YearAround;
 
 use Yue\YearAround\Contracts\IMonth;
+use Yue\YearAround\Utilities\ConstellationFactory;
 use Yue\YearAround\Utilities\DateParser;
 
 class Context
 {
+    /**
+     * @param $month
+     * @param $day
+     * @param null $dictionary
+     * @param int $type
+     * @return Contracts\IConstellation
+     */
+    public static function CreateConstellation($month, $day, $dictionary = null, $type = 0){
+        if($type){
+            return ConstellationFactory::Instance($type, $dictionary);
+        }
+        return ConstellationFactory::GetInstance($month, $day, $dictionary);
+    }
+
     /**
      * Create a new year instance
      * @param $year
