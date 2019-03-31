@@ -43,6 +43,12 @@ interface IMonth
     public function getSeason();
 
     /**
+     * Get possible Constellations
+     * @return array
+     */
+    public function getConstellations();
+
+    /**
      * Set Holiday
      * @param IHoliday $holiday
      * @return IMonth

@@ -42,7 +42,7 @@ class EnglishDictionary extends IDictionary
         'December',
     ];
 
-    protected $seasonsName = [
+    public $seasonsName = [
         'Spring',
         'Summer',
         'Autumn',

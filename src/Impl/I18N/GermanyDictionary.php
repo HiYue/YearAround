@@ -39,7 +39,7 @@ class GermanyDictionary extends EnglishDictionary
         'Dezember',
     ];
 
-    protected $seasonsName = [
+    public $seasonsName = [
         'Frühling',
         'Sommer',
         'Herbst',

@@ -1,6 +1,8 @@
 # Year-Around
 - Support English, Chinese, Japanese, French, Germany and Spanish
 - 支持自动输出 中/英/日/德/法/西 的月份与季节
+- Support Constellations
+- 支持根据日期获取星座 可输出每个月可能的星座
 - Parse any month in any language is the start or end of a season. 
 - 解析任意给定的日期来判定是否为一年中的某个季节的开始和结束
 - When a year is not start from January, such as a Financial Year in Australia
@@ -60,6 +62,28 @@ foreach($seasons as $season){
 $feb = DateParser::GetMonth(2);
 $lastDayInt = $feb->getLastDay(2000)->day; // It's 29 得到闰月值 29
 $lastDayInt = $feb->getLastDay(2001)->day; // It's 28 得到闰月值 28
+```
+
+### Constellations 星座的获取
+```php
+use Yue\YearAround\Context;
+use Yue\YearAround\Contracts\IConstellation;
+use Yue\YearAround\Utilities\DateParser;
+use Yue\YearAround\Utilities\DictionaryFactory;
+
+$constellation = Context::CreateConstellation(1,11,DictionaryFactory::GetInstance('en'));
+
+var_dump($constellation->getName());    // Capricorn 摩羯座
+var_dump($constellation->getFistDay()->format('d/M'));  // 22/Dec 从12月22日
+var_dump($constellation->getLastDay()->format('d/M'));  // 19/Jan 至1月19日
+
+// Get previous and next 获取前一个星座和下一个星座的名称
+var_dump($constellation->prev()->getName());    // Sagittarius 前一个星座是射手座
+var_dump($constellation->next()->getName());    // Aquarius 下一个星座是水瓶座
+
+// Get constellation by give tpye 获取指定的星座
+$leo = Context::CreateConstellation(null, null, null, IConstellation::Leo);
+var_dump($leo->getName()); // Leo 狮子座
 ```
 
 ### Season start/end 判断是否季度开始/结束月份

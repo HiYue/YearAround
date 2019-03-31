@@ -20,7 +20,7 @@
             "email": "hi@yue.dev"
         }
     ],
-    "minimum-stability": "0.0.1",
+    "minimum-stability": "dev",
     "scripts":{
         "test": "./vendor/bin/phpunit"
     }
