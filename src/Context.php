@@ -36,7 +36,7 @@ class Context
          * @var IMonth $month
          */
         $month = DateParser::GetMonth($date);
-        return $month->getIntValue() === 1;
+        return $month->getIntValue() === Env::get(Env::DEFAULT_START_MONTH);
     }
 
     /**
@@ -50,7 +50,7 @@ class Context
          * @var IMonth $month
          */
         $month = DateParser::GetMonth($date);
-        return $month->getIntValue() === 12;
+        return $month->getIntValue() === 12 || $month->getIntValue() === Env::get(Env::DEFAULT_START_MONTH) - 1;
     }
 
     /**
@@ -64,7 +64,7 @@ class Context
          * @var IMonth $month
          */
         $month = DateParser::GetMonth($date);
-        return in_array($month->getIntValue(), [3,6,9,12]);
+        return in_array($month->getIntValue(), [3,6,9,12]); // 季度末是固定值
     }
 
     /**
@@ -78,6 +78,6 @@ class Context
          * @var IMonth $month
          */
         $month = DateParser::GetMonth($date);
-        return in_array($month->getIntValue(), [1,4,7,10]);
+        return in_array($month->getIntValue(), [1,4,7,10]); // 季度首月是固定值
     }
 }
