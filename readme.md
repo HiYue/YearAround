@@ -103,7 +103,9 @@ $isEndOfAnySeason4 = Context::IsEndOfSeason($monthString3);  // True
 $isEndOfAnySeason5 = Context::IsEndOfSeason($monthString4);  // True
 ```
 
-### Season start/end 判断是否季度开始/结束月份
+### Year start/end 判断是否年度开始/结束月份
+- It refers to the configured YEAR_AROUND_START_MONTH; By default: 1 (January)
+- 将根据在配置文件中的 YEAR_AROUND_START_MONTH 项来判定年度的起始 默认为1
 ```php
 use Yue\YearAround\Context;
 
