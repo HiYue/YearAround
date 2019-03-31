@@ -22,10 +22,10 @@ $ composer require yue/yeararound
 - YEAR_AROUND_LANGUAGE="EN"         // Default Language: English; Support CN/ES/FR/DE/JP 默认语言英语
 ```
 /** File: .env.example */
-- YEAR_AROUND_START_MONTH=1
-- YEAR_AROUND_HEMISPHERE=1
-- YEAR_AROUND_FORMAT_SEPARATOR="-"
-- YEAR_AROUND_LANGUAGE="EN"
+YEAR_AROUND_START_MONTH=1
+YEAR_AROUND_HEMISPHERE=1
+YEAR_AROUND_FORMAT_SEPARATOR="-"
+YEAR_AROUND_LANGUAGE="EN"
 ```
 
 ### Year, Season and Month 年月日
