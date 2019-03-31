@@ -4,6 +4,8 @@
  * Author: Justin Wang
  * Email: hi@yue.dev
  */
+use Yue\YearAround\Contracts\IConstellation;
+use Yue\YearAround\Context;
 
 class ConstellationTest extends \PHPUnit\Framework\TestCase
 {
@@ -11,7 +13,7 @@ class ConstellationTest extends \PHPUnit\Framework\TestCase
      * 测试可以按照日期和类型来获取星座
      */
     public function testCreateConstellations(){
-        foreach (range(\Yue\YearAround\Contracts\IConstellation::Aquarius, \Yue\YearAround\Contracts\IConstellation::Capricorn) as $type) {
+        foreach (range(IConstellation::Aquarius, IConstellation::Capricorn) as $type) {
             $constellation = \Yue\YearAround\Context::CreateConstellation(null, null, null,$type);
             $this->assertNotNull($constellation);
             $this->assertNotNull($constellation->prev());
@@ -41,5 +43,7 @@ class ConstellationTest extends \PHPUnit\Framework\TestCase
 //                echo PHP_EOL.'****************'.PHP_EOL;
 //            }
         }
+
+        $leo = Context::CreateConstellation(null, null, null,IConstellation::Leo);
     }
 }
