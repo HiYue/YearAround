@@ -1,4 +1,6 @@
 # Year-Around
+- Support English, Chinese, Japanese, French, Germany and Spanish
+- 支持自动输出 中/英/日/德/法/西 的月份与季节
 - Parse any month in any language is the start or end of a season. 
 - 解析任意给定的日期来判定是否为一年中的某个季节的开始和结束
 - When a year is not start from January, such as a Financial Year in Australia
@@ -17,7 +19,14 @@ $ composer require yue/yeararound
 - YEAR_AROUND_START_MONTH=7         // 全局配置以7月份作为起始年 默认或缺失此配置时 起始月份为1月
 - YEAR_AROUND_HEMISPHERE=1          // 在北半球使用; 南半球使用设置为2 则季节会反转
 - YEAR_AROUND_FORMAT_SEPARATOR="-"  // 年月之间的分隔符
-- YEAR_AROUND_LANGUAGE="EN"         // Default Language 默认语言
+- YEAR_AROUND_LANGUAGE="EN"         // Default Language: English; Support CN/ES/FR/DE/JP 默认语言英语
+```
+/** File: .env.example */
+- YEAR_AROUND_START_MONTH=1
+- YEAR_AROUND_HEMISPHERE=1
+- YEAR_AROUND_FORMAT_SEPARATOR="-"
+- YEAR_AROUND_LANGUAGE="EN"
+```
 
 ### Year, Season and Month 年月日
 ```php
