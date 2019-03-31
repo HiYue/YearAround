@@ -15,18 +15,18 @@ class DictionaryFactory
 {
     /**
      * 获取字典 默认为英文字典
-     * @param null $lang
+     * @param string|null $lang
      * @return IDictionary
      */
     public static function GetInstance($lang = null){
-        $lang = $lang ? strtolower($lang) : 'en';
+        $lang = $lang ? strtolower($lang) : IDictionary::ENGLISH;
         /**
          * @var IDictionary $instance
          */
         $instance = null;
 
         switch ($lang){
-            case 'cn':
+            case IDictionary::CHINESE:
                 $instance = new ChineseDictionary();
                 break;
             default:

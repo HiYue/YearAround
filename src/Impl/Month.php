@@ -6,13 +6,15 @@
 
 namespace Yue\YearAround\Impl;
 
-
+use Yue\YearAround\Contracts\IHemisphere;
 use Carbon\Carbon;
 use Yue\YearAround\Contracts\IDictionary;
 use Yue\YearAround\Contracts\IHoliday;
 use Yue\YearAround\Contracts\IMonth;
 use Yue\YearAround\Contracts\ISeason;
+use Yue\YearAround\Env;
 use Yue\YearAround\Utilities\DictionaryFactory;
+use Yue\YearAround\Utilities\SeasonFactory;
 use Yue\YearAround\Utilities\YearAroundMonthException;
 
 class Month implements IMonth
@@ -41,10 +43,11 @@ class Month implements IMonth
     /**
      * Month constructor.
      * @param $month
+     * @param IDictionary|null $dic
      */
-    public function __construct($month)
+    public function __construct($month, $dic = null)
     {
-        $this->_dictionary = DictionaryFactory::GetInstance();
+        $this->_dictionary = $dic ? $dic : DictionaryFactory::GetInstance(Env::get(Env::LANGUAGE));
         foreach ($this->_dictionary->getContent() as $idx=>$item) {
             if($month === $idx+1){
                 $this->init($idx+1);
@@ -55,6 +58,7 @@ class Month implements IMonth
                 break;
             }
         }
+
         if($this->monthIntValue<1){
             throwException(new YearAroundMonthException());
         }
@@ -66,8 +70,8 @@ class Month implements IMonth
      */
     private function init($intIndex){
         $this->monthIntValue = $intIndex;
-        $this->abbr = $this->_dictionary->getAbbr($intIndex-1);
-        $this->name = $this->_dictionary->getFullName($intIndex-1);
+        $this->abbr = $this->_dictionary->getAbbrMonth($intIndex-1);
+        $this->name = $this->_dictionary->getFullNameMonth($intIndex-1);
         return $this;
     }
 
@@ -115,6 +119,35 @@ class Month implements IMonth
      */
     public function getSeason()
     {
+        if(!$this->season){
+            // 检查一下是哪个半球
+            $north = IHemisphere::NORTH === Env::get(Env::DEFAULT_HEMISPHERE);
+            if($north){
+                $type = ISeason::SPRING;
+                if(in_array($this->monthIntValue, range(4,6))){
+                    $type = ISeason::SUMMER;
+                }
+                elseif(in_array($this->monthIntValue, range(7,9))){
+                    $type = ISeason::AUTUMN;
+                }
+                elseif(in_array($this->monthIntValue, range(10,12))){
+                    $type = ISeason::WINTER;
+                }
+            }else{
+                // 南半球
+                $type = ISeason::SPRING;
+                if(in_array($this->monthIntValue, range(10,12))){
+                    $type = ISeason::SUMMER;
+                }
+                elseif(in_array($this->monthIntValue, range(1,3))){
+                    $type = ISeason::AUTUMN;
+                }
+                elseif(in_array($this->monthIntValue, range(4,6))){
+                    $type = ISeason::WINTER;
+                }
+            }
+            $this->season = SeasonFactory::GetInstance($type, $this->_dictionary);
+        }
         return $this->season;
     }
 
@@ -141,8 +174,12 @@ class Month implements IMonth
     /**
      * {@inheritdoc}
      */
-    public function getLastDay()
+    public function getLastDay($year = null)
     {
+        if(is_null($this->lastDay)){
+            $year = $year ? $year : Carbon::now()->year;
+            $this->lastDay = Carbon::create($year, $this->monthIntValue, 1)->endOfMonth();
+        }
         return $this->lastDay;
     }
 
@@ -151,6 +188,6 @@ class Month implements IMonth
      */
     public function __toString()
     {
-        return $this->_dictionary->format($this->year,$this);
+        return $this->_dictionary->formatMonth($this->year,$this);
     }
 }

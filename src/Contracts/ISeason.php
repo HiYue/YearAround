@@ -11,6 +11,11 @@ namespace Yue\YearAround\Contracts;
 
 interface ISeason
 {
+    const SPRING = 0;
+    const SUMMER = 1;
+    const AUTUMN = 2;
+    const WINTER = 3;
+
     /**
      * Get months of the season
      * @return array
@@ -22,4 +27,10 @@ interface ISeason
      * @return string
      */
     public function getName();
+
+    /**
+     * Get Season type
+     * @return int
+     */
+    public function getType();
 }

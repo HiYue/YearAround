@@ -7,14 +7,16 @@
 
 namespace Yue\YearAround;
 
-
 use Yue\YearAround\Contracts\IHemisphere;
 use Yue\YearAround\Contracts\IMonth;
+use Yue\YearAround\Contracts\ISeason;
+use Yue\YearAround\Impl\Season;
 use Yue\YearAround\Utilities\DateParser;
 
 class YearAround
 {
     private $months;
+    private $seasons;
     private $hemisphere = IHemisphere::NORTH;
     private $_year;
 
@@ -31,37 +33,6 @@ class YearAround
          */
         $this->hemisphere = Env::get(Env::HEMISPHERE);
 
-        /**
-         * 生成两年的月份排列
-         */
-//        $defaultMonthsIndex = range(1,12);
-//        foreach (range(1, 12) as $idx) {
-//            $defaultMonthsIndex[] = $idx;
-//        }
-//
-//        // Todo 根据配置的默认起始月来生成一年中的所有月份
-//        $startMonthValue = Env::get(Env::START_MONTH);
-//        $index = 0;
-//        foreach ($defaultMonthsIndex as $idx => $monthValue) {
-//            if($monthValue === $startMonthValue){
-//                $index = $idx;
-//                break;
-//            }
-//        }
-//
-//        $startMonthValueInt = $defaultMonthsIndex[$index];
-//
-//        for ($i = 0; $i < 12; $i++){
-//            $mIndex = $defaultMonthsIndex[$index + $i];
-//            $m = DateParser::GetMonth($mIndex);
-//            if($mIndex < $startMonthValueInt){
-//                // 表示跨年了
-//                $m->setYear($this->_year+1);
-//            }else{
-//                $m->setYear($this->_year);
-//            }
-//            $this->months[] = $m;
-//        }
         $this->_init();
     }
 
@@ -75,7 +46,7 @@ class YearAround
             $defaultMonthsIndexes[] = $idx;
         }
 
-        // Todo 根据配置的默认起始月来生成一年中的所有月份
+        // 根据配置的默认起始月来生成一年中的所有月份
         $startMonthValue = $startMonthValueInt ? $startMonthValueInt : Env::get(Env::START_MONTH);
         $index = 0;
         foreach ($defaultMonthsIndexes as $idx => $monthValue) {
@@ -84,10 +55,6 @@ class YearAround
                 break;
             }
         }
-
-//        if(is_null($startMonthValueInt)){
-//            $startMonthValueInt = $defaultMonthsIndex[$index];
-//        }
 
         for ($i = 0; $i < 12; $i++){
             $mIndexValue = $defaultMonthsIndexes[$index + $i];
@@ -100,6 +67,12 @@ class YearAround
             }
             $this->months[] = $m;
         }
+
+        // Init seasons
+        foreach (range(ISeason::SPRING, ISeason::WINTER) as $theSeasonType) {
+            $this->seasons[] = new Season($theSeasonType);
+        }
+
         return $this;
     }
 
@@ -128,10 +101,26 @@ class YearAround
     }
 
     /**
+     * 获取本年中的所有季节
+     * @return array
+     */
+    public function getSeasons(){
+        return $this->seasons;
+    }
+
+    /**
      * @param $monthValueInt
      * @return YearAround
      */
     public function setStartMonth($monthValueInt){
         return $this->_init($monthValueInt);
+    }
+
+    /**
+     * Is leap year 是否为闰年
+     * @return bool
+     */
+    public function isLeapYear(){
+        return $this->_year % 4 === 0;
     }
 }

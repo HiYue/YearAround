@@ -9,6 +9,31 @@ use PHPUnit\Framework\TestCase;
 
 class MonthToolTest extends TestCase
 {
+    /**
+     * 测试可以正确的获取某个月的最后一天
+     */
+    public function testMonthCanGetRightListDay(){
+        $monthWith31Days = [1,3,5,7,8,10,12];
+        foreach ($monthWith31Days as $monthWith31Day) {
+            $m = \Yue\YearAround\Utilities\DateParser::GetMonth($monthWith31Day);
+            $this->assertEquals(31, $m->getLastDay(2000)->day);
+        }
+
+        $monthWith30Days = [4,6,9,11];
+        foreach ($monthWith30Days as $monthWith30Day) {
+            $m = \Yue\YearAround\Utilities\DateParser::GetMonth($monthWith30Day);
+            $this->assertEquals(30, $m->getLastDay(2000)->day);
+        }
+
+        // 测试闰月
+        $m = \Yue\YearAround\Utilities\DateParser::GetMonth(2);
+        $this->assertEquals(29, $m->getLastDay(2000)->day);
+        $m2 = \Yue\YearAround\Utilities\DateParser::GetMonth(2);
+        $this->assertEquals(28, $m2->getLastDay(2001)->day);
+    }
+    /**
+     * 测试是否可以正确的判断某个给定格式的1月份是年底
+     */
     public function testIsStartOfYearForAnyGivenMonthValue(){
         $this->assertTrue(\Yue\YearAround\Context::IsStartOfYear(1),'1 is start of any year');
         $this->assertTrue(\Yue\YearAround\Context::IsStartOfYear('1'));
@@ -27,7 +52,9 @@ class MonthToolTest extends TestCase
         $this->assertFalse(\Yue\YearAround\Context::IsStartOfYear('Feb'), 'Jan is not end of any year');
     }
 
-
+    /**
+     * 测试是否可以正确的判断某个给定格式的12月份是年底
+     */
     public function testIsEndOfYearForAnyGivenMonthValue(){
         $this->assertTrue(\Yue\YearAround\Context::IsEndOfYear(12),'12 is end of any year');
         $this->assertTrue(\Yue\YearAround\Context::IsEndOfYear('12'));

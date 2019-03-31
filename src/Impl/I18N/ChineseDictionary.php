@@ -6,10 +6,8 @@
 
 namespace Yue\YearAround\Impl\I18N;
 
-
 use Yue\YearAround\Contracts\IDictionary;
 use Yue\YearAround\Contracts\IMonth;
-use Yue\YearAround\Env;
 
 class ChineseDictionary extends IDictionary
 {
@@ -28,6 +26,12 @@ class ChineseDictionary extends IDictionary
         '十二月',
     ];
 
+    public $seasonsName = [
+        '春季',
+        '夏季',
+        '秋季',
+        '冬季',
+    ];
     /**
      * {@inheritdoc}
      */
@@ -36,6 +40,10 @@ class ChineseDictionary extends IDictionary
         foreach (range(1,12) as $idx) {
             $this->monthsList[$idx-1][] = $this->names[$idx-1];
             $this->monthsList[$idx-1][] = $this->names[$idx-1];
+            if($idx<4){
+                // Seasons
+                $this->seasonsList[$idx-1][] = $this->seasonsName[$idx-1];
+            }
         }
     }
 
@@ -45,8 +53,16 @@ class ChineseDictionary extends IDictionary
      * @param string $separator
      * @return string
      */
-    public function format($year, $month, $separator = null)
+    public function formatMonth($year, $month, $separator = null)
     {
         return $year.'年'.$month->getName();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function formatSeason($season)
+    {
+        return $this->seasonsName[$season->getType()];
     }
 }

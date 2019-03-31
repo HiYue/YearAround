@@ -9,6 +9,10 @@ class YearToolTest extends \PHPUnit\Framework\TestCase
 {
     public function testCreateYear(){
         $year = \Yue\YearAround\Context::CreateYear(2018);
+        $leapYear = \Yue\YearAround\Context::CreateYear(2000);
+        $this->assertFalse($year->isLeapYear());
+        $this->assertTrue($leapYear->isLeapYear());
+
         $this->assertEquals(12, count($year->getMonths()),' 一年必须有12个月才对');
 
         $ms = range(1,12);
@@ -20,9 +24,6 @@ class YearToolTest extends \PHPUnit\Framework\TestCase
             $this->assertEquals($ms[$idx], $month->getIntValue());
             $this->assertEquals(2018, $month->getYear());
         }
-
-        $year->getFirstMonth();
-        $year->getLastMonth();
 
         /**
          * 跨年的测试 起始月份为4月份

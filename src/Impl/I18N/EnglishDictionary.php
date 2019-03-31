@@ -42,6 +42,13 @@ class EnglishDictionary extends IDictionary
         'December',
     ];
 
+    public $seasonsName = [
+        'Spring',
+        'Summer',
+        'Autumn',
+        'Winter',
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -50,6 +57,10 @@ class EnglishDictionary extends IDictionary
         foreach (range(1,12) as $idx) {
             $this->monthsList[$idx-1][] = $this->_abbrs[$idx-1];
             $this->monthsList[$idx-1][] = $this->_names[$idx-1];
+            if($idx<4){
+                // Seasons
+                $this->seasonsList[$idx-1][] = $this->seasonsName[$idx-1];
+            }
         }
     }
 
@@ -59,11 +70,19 @@ class EnglishDictionary extends IDictionary
      * @param string $separator
      * @return string
      */
-    public function format($year, $month, $separator = null)
+    public function formatMonth($year, $month, $separator = null)
     {
         if(is_null($separator)){
             $separator = Env::get(Env::FORMAT_SEPARATOR);
         }
         return $month->getName().$separator.$year;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function formatSeason($season)
+    {
+        return $this->seasonsName[$season->getType()];
     }
 }

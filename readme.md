@@ -14,9 +14,44 @@ $ composer require yue/yeararound
 
 ## How to Use 使用说明
 ### Global configurations in flexible 灵活的自动配置 兼容Laravel
-- YEAR_AROUND_START_MONTH=7 // 全局配置以7月份作为起始年 默认或缺失此配置时 起始月份为1月
-- YEAR_AROUND_HEMISPHERE=1  // 在北半球使用; 南半球使用设置为2 则季节会反转
+- YEAR_AROUND_START_MONTH=7         // 全局配置以7月份作为起始年 默认或缺失此配置时 起始月份为1月
+- YEAR_AROUND_HEMISPHERE=1          // 在北半球使用; 南半球使用设置为2 则季节会反转
 - YEAR_AROUND_FORMAT_SEPARATOR="-"  // 年月之间的分隔符
+- YEAR_AROUND_LANGUAGE="EN"         // Default Language 默认语言
+
+### Year, Season and Month 年月日
+```php
+use Yue\YearAround\Context;
+use Yue\YearAround\Contracts\ISeason;
+use Yue\YearAround\Contracts\IMonth;
+use Yue\YearAround\Utilities\DateParser;
+
+$year = Context::CreateYear(2018);
+
+// Check if the leap year
+$isLeapYear = $year->isLeapYear(); // false 是否为闰年
+
+$seasons = $year->getSeasons();
+
+foreach($seasons as $season){
+    /** @var ISeason $season */
+    var_dump($season->getName());
+    
+    // Get months of each season, it will be adjusted by hemisphere setting in .env
+    // 获取每个季度或者季节包含的月份 会根据 .env 文件中半球的设置自动生成
+    $months = $season->getMonths();
+    foreach($months as $month){
+        /** @var IMonth $month */
+        var_dump($month);
+    }
+}
+
+// Can get the end day of any month in any year
+// 可以获取某个月在任何年的最后一天
+$feb = DateParser::GetMonth(2);
+$lastDayInt = $feb->getLastDay(2000)->day; // It's 29 得到闰月值 29
+$lastDayInt = $feb->getLastDay(2001)->day; // It's 28 得到闰月值 28
+```
 
 ### Season start/end 判断是否季度开始/结束月份
 ```php

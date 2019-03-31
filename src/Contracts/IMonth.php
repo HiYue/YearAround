@@ -57,9 +57,10 @@ interface IMonth
 
     /**
      * Get the last day of the month
+     * @param int|null $year
      * @return Carbon
      */
-    public function getLastDay();
+    public function getLastDay($year = null);
 
     /**
      * Get the full description of the month
