@@ -51,7 +51,7 @@ class Context
          * @var IMonth $month
          */
         $month = DateParser::GetMonth($date);
-        return $month->getIntValue() === Env::get(Env::DEFAULT_START_MONTH);
+        return $month->getIntValue() === Env::get(Env::START_MONTH);
     }
 
     /**
@@ -65,7 +65,12 @@ class Context
          * @var IMonth $month
          */
         $month = DateParser::GetMonth($date);
-        return $month->getIntValue() === 12 || $month->getIntValue() === Env::get(Env::DEFAULT_START_MONTH) - 1;
+        $start = Env::get(Env::START_MONTH);
+        if($start == 1){
+            return $month->getIntValue() === 12;
+        }else{
+            return $month->getIntValue() === $start - 1;
+        }
     }
 
     /**

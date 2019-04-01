@@ -32,7 +32,7 @@ class Season implements ISeason
         $this->dictionary = $dictionary ? $dictionary : DictionaryFactory::GetInstance(Env::get(Env::LANGUAGE));
         $this->type = $type;
 
-        $north = IHemisphere::NORTH === ($hemisphere ? $hemisphere : Env::get(Env::DEFAULT_HEMISPHERE));
+        $north = IHemisphere::NORTH === ($hemisphere ? $hemisphere : Env::get(Env::HEMISPHERE));
         $monthValuesArray = [];
         if(ISeason::SPRING === $type){
             $monthValuesArray = $north ? range(1,3) : range(7,9);
