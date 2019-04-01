@@ -33,6 +33,21 @@ class ChineseDictionary extends IDictionary
         '冬季',
     ];
 
+    public $_constellationsName = [
+        '水瓶座',
+        '双鱼座',
+        '白羊座',
+        '金牛座',
+        '双子座',
+        '巨蟹座',
+        '狮子座',
+        '处女座',
+        '天秤座',
+        '天蝎座',
+        '射手座',
+        '魔羯座'
+    ];
+
     /**
      * {@inheritdoc}
      */
@@ -41,6 +56,9 @@ class ChineseDictionary extends IDictionary
         foreach (range(1,12) as $idx) {
             $this->monthsList[$idx-1][] = $this->names[$idx-1];
             $this->monthsList[$idx-1][] = $this->names[$idx-1];
+            // 星座
+            $this->constellationList[$idx-1][2] = $this->_constellationsName[$idx-1];
+
             if($idx<4){
                 // Seasons
                 $this->seasonsList[$idx-1][] = $this->seasonsName[$idx-1];

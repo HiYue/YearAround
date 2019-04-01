@@ -28,9 +28,4 @@ class Capricorn extends AbstractConstellation
         $this->lastDate = Carbon::create(1976,1,19);
         $this->_type = IConstellation::Capricorn;
     }
-
-    public function getName()
-    {
-        return 'Capricorn';
-    }
 }

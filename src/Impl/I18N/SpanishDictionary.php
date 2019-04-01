@@ -38,16 +38,24 @@ class SpanishDictionary extends EnglishDictionary
         'Noviembre',
         'Diciembre',
     ];
-
     public $seasonsName = [
         'Primavera',
         'Verano',
         'Otoño',
         'Invierno',
     ];
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    public $_constellationsName = [
+        'Acuario',
+        'Piscis',
+        'Aries',
+        'Tauro',
+        'Géminis',
+        'Cáncer',
+        'Leo',
+        'Virgo',
+        'Libra',
+        'Escorpio',
+        'Sagitario',
+        'Capricornio'
+    ];
 }

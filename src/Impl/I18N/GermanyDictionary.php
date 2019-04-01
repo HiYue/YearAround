@@ -38,16 +38,24 @@ class GermanyDictionary extends EnglishDictionary
         'November',
         'Dezember',
     ];
-
     public $seasonsName = [
         'Frühling',
         'Sommer',
         'Herbst',
         'Winter',
     ];
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    public $_constellationsName = [
+        'Wassermann',
+        'Fische',
+        'Widder',
+        'Stier',
+        'Zwillinge',
+        'Krebs',
+        'Löwe',
+        'Jungfrau',
+        'Waage',
+        'Skorpion',
+        'Schütze',
+        'Steinbock'
+    ];
 }

@@ -27,9 +27,4 @@ class Gemini extends AbstractConstellation
         $this->lastDate = Carbon::create(1975,6,21);
         $this->_type = IConstellation::Gemini;
     }
-
-    public function getName()
-    {
-        return 'Gemini';
-    }
 }

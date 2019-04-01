@@ -38,16 +38,24 @@ class FrenchDictionary extends EnglishDictionary
         'Novembre',
         'Décembre',
     ];
-
     public $seasonsName = [
         'Printemps',
         'Été',
         'L\'automne',
         'Hiver',
     ];
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    public $_constellationsName = [
+        'Verseau',
+        'Poisson',
+        'Bélier',
+        'Taureau',
+        'Gémeaux',
+        'Cancer',
+        'Lion',
+        'Vierge',
+        'Balance',
+        'Scorpion',
+        'Sagittaire',
+        'Capricorne'
+    ];
 }

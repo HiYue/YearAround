@@ -27,9 +27,4 @@ class Scorpio extends AbstractConstellation
         $this->lastDate = Carbon::create(1975,11,22);
         $this->_type = IConstellation::Scorpio;
     }
-
-    public function getName()
-    {
-        return 'Scorpio';
-    }
 }

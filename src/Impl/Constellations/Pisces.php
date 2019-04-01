@@ -27,12 +27,4 @@ class Pisces extends AbstractConstellation
         $this->lastDate = Carbon::create(1975,3,20);
         $this->_type = IConstellation::Pisces;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'Pisces';
-    }
 }

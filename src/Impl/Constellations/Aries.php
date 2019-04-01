@@ -27,9 +27,4 @@ class Aries extends AbstractConstellation
         $this->lastDate = Carbon::create(1975,4,19);
         $this->_type = IConstellation::Aries;
     }
-
-    public function getName()
-    {
-        return 'Aries';
-    }
 }

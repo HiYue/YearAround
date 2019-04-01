@@ -27,9 +27,4 @@ class Leo extends AbstractConstellation
         $this->lastDate = Carbon::create(1975,8,22);
         $this->_type = IConstellation::Leo;
     }
-
-    public function getName()
-    {
-        return 'Leo';
-    }
 }

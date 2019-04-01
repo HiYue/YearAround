@@ -27,9 +27,4 @@ class Cancer extends AbstractConstellation
         $this->lastDate = Carbon::create(1975,7,22);
         $this->_type = IConstellation::Cancer;
     }
-
-    public function getName()
-    {
-        return 'Cancer';
-    }
 }
