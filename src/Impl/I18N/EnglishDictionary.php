@@ -49,14 +49,32 @@ class EnglishDictionary extends IDictionary
         'Winter',
     ];
 
+    public $_constellationsName = [
+        'Aquarius',
+        'Pisces',
+        'Aries',
+        'Taurus',
+        'Gemini',
+        'Cancer',
+        'Leo',
+        'Virgo',
+        'Libra',
+        'Scorpio',
+        'Sagittarius',
+        'Capricorn'
+    ];
+
     /**
      * {@inheritdoc}
      */
     public function init()
     {
         foreach (range(1,12) as $idx) {
-            $this->monthsList[$idx-1][] = $this->_abbrs[$idx-1];
-            $this->monthsList[$idx-1][] = $this->_names[$idx-1];
+            $this->monthsList[$idx-1][2] = $this->_abbrs[$idx-1];
+            $this->monthsList[$idx-1][3] = $this->_names[$idx-1];
+            // 星座
+            $this->constellationList[$idx-1][2] = $this->_constellationsName[$idx-1];
+
             if($idx<4){
                 // Seasons
                 $this->seasonsList[$idx-1][] = $this->seasonsName[$idx-1];

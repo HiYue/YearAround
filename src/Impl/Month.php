@@ -50,7 +50,7 @@ class Month implements IMonth
     public function __construct($month, $dic = null)
     {
         $this->_dictionary = $dic ? $dic : DictionaryFactory::GetInstance(Env::get(Env::LANGUAGE));
-        foreach ($this->_dictionary->getContent() as $idx=>$item) {
+        foreach ($this->_dictionary->getMonthsList() as $idx=>$item) {
             if($month === $idx+1){
                 $this->init($idx+1);
                 break;

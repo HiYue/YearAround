@@ -14,7 +14,8 @@ class ConstellationTest extends \PHPUnit\Framework\TestCase
      */
     public function testCreateConstellations(){
         foreach (range(IConstellation::Aquarius, IConstellation::Capricorn) as $type) {
-            $constellation = \Yue\YearAround\Context::CreateConstellation(null, null, null,$type);
+            $dic = \Yue\YearAround\Utilities\DictionaryFactory::GetInstance(\Yue\YearAround\Contracts\IDictionary::ENGLISH);
+            $constellation = \Yue\YearAround\Context::CreateConstellation(null, null, $dic,$type);
             $this->assertNotNull($constellation);
             $this->assertNotNull($constellation->prev());
             $this->assertNotNull($constellation->next());

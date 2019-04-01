@@ -27,9 +27,4 @@ class Libra extends AbstractConstellation
         $this->lastDate = Carbon::create(1975,10,23);
         $this->_type = IConstellation::Libra;
     }
-
-    public function getName()
-    {
-        return 'Libra';
-    }
 }

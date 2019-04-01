@@ -27,9 +27,4 @@ class Sagittarius extends AbstractConstellation
         $this->lastDate = Carbon::create(1975,12,21);
         $this->_type = IConstellation::Sagittarius;
     }
-
-    public function getName()
-    {
-        return 'Sagittarius';
-    }
 }

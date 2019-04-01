@@ -27,9 +27,4 @@ class Taurus extends AbstractConstellation
         $this->lastDate = Carbon::create(1975,5,20);
         $this->_type = IConstellation::Taurus;
     }
-
-    public function getName()
-    {
-        return 'Taurus';
-    }
 }

@@ -27,9 +27,4 @@ class Virgo extends AbstractConstellation
         $this->lastDate = Carbon::create(1975,9,22);
         $this->_type = IConstellation::Virgo;
     }
-
-    public function getName()
-    {
-        return 'Virgo';
-    }
 }

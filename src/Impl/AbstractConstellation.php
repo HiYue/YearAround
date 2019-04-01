@@ -118,4 +118,12 @@ abstract class AbstractConstellation implements IConstellation
             ||
         ($this->lastDate->month === $month && $day <= $this->lastDate->day);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return $this->dictionary->getFullNameConstellation($this->getType());
+    }
 }

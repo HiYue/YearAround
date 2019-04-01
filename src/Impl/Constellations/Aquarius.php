@@ -28,9 +28,4 @@ class Aquarius extends AbstractConstellation
         $this->lastDate = Carbon::create(1975,2,18);
         $this->_type = IConstellation::Aquarius;
     }
-
-    public function getName()
-    {
-        return 'Aquarius';
-    }
 }
