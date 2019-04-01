@@ -36,9 +36,11 @@ class Env
         switch ($key){
             case self::HEMISPHERE:
                 $result = $hasEnvFunctionDefined ? env('YEAR_AROUND_HEMISPHERE', self::DEFAULT_HEMISPHERE) : self::DEFAULT_HEMISPHERE;
+                $result = intval($result);
                 break;
             case self::START_MONTH:
                 $result = $hasEnvFunctionDefined ? env('YEAR_AROUND_START_MONTH', self::DEFAULT_START_MONTH) : self::DEFAULT_START_MONTH;
+                $result = intval($result);
                 break;
             case self::FORMAT_SEPARATOR:
                 $result = $hasEnvFunctionDefined ? env('YEAR_AROUND_FORMAT_SEPARATOR', self::DEFAULT_FORMAT_SEPARATOR) : self::DEFAULT_FORMAT_SEPARATOR;
