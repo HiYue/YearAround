@@ -123,7 +123,7 @@ class Month implements IMonth
     {
         if(!$this->season){
             // 检查一下是哪个半球
-            $north = IHemisphere::NORTH === Env::get(Env::DEFAULT_HEMISPHERE);
+            $north = IHemisphere::NORTH === Env::get(Env::HEMISPHERE);
             if($north){
                 $type = ISeason::SPRING;
                 if(in_array($this->monthIntValue, range(4,6))){
