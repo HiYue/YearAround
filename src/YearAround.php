@@ -41,10 +41,7 @@ class YearAround
         /**
          * 生成两年的月份排列
          */
-        $defaultMonthsIndexes = range(1,12);
-        foreach (range(1, 12) as $idx) {
-            $defaultMonthsIndexes[] = $idx;
-        }
+        $defaultMonthsIndexes = array_merge(range(1,12), range(1,12));
 
         // 根据配置的默认起始月来生成一年中的所有月份
         $startMonthValue = $startMonthValueInt ? $startMonthValueInt : Env::get(Env::START_MONTH);
