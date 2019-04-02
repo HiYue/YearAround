@@ -9,17 +9,21 @@ namespace Yue\YearAround\Contracts;
 
 use Carbon\Carbon;
 
-interface IHoliday
+interface IHoliday extends IDay
 {
+    /**
+     * Get Holiday name
+     * @return string
+     */
     public function getName();
 
     /**
-     * @return Carbon
+     * @return IDay
      */
     public function getStartDay();
 
     /**
-     * @return Carbon
+     * @return IDay
      */
     public function getEndDay();
 
